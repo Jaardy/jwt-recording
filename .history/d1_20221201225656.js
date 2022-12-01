@@ -7,8 +7,6 @@ async function parseData() {
   return dataParsed;
 }
 
-parseData();
-
 async function main() {
   const data = await parseData();
   const elfTotals = data.map((x) => {
@@ -19,8 +17,8 @@ async function main() {
   });
   elfTotals.pop();
   elfTotals.sort((a, b) => b - a);
-
-  console.table(elfTotals[0] + elfTotals[1] + elfTotals[2]);
+  console.table("Part-1:", elfTotals[0]);
+  console.table("Part-1:", elfTotals[0] + elfTotals[1] + elfTotals[2]);
 }
 
 main();
