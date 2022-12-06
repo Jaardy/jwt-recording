@@ -9,7 +9,6 @@ exports.userScreen = async function (req, res, next) {
   const [user, _isCreated] = await User.findOrCreate({
     where: { username, email },
   });
-  req.user = { username, userId: user.id };
-  console.log(req.user);
+  console.log(req.oidc.fetchUserInfo());
   next();
 };

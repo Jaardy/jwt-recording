@@ -29,7 +29,8 @@ app.get("/test2", requiresAuth(), (req, res) => {
   res.send(req.oidc.user);
 });
 app.get("/messages", async (req, res, next) => {
-  const posts = await Post.findAll({ where: { userId: req.user.userId } });
+  console.log(req.user.userId);
+  const posts = await Post.findAll({ where: { userId: req.user.id } });
   res.status(200).send(posts);
 });
 

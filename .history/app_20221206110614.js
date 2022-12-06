@@ -29,14 +29,16 @@ app.get("/test2", requiresAuth(), (req, res) => {
   res.send(req.oidc.user);
 });
 app.get("/messages", async (req, res, next) => {
-  const posts = await Post.findAll({ where: { userId: req.user.userId } });
+  console.log(req.user.userId);
+  const posts = await Post.findAll({ where: { userId: req.user.id } });
   res.status(200).send(posts);
 });
 
 app.post("/messages", async (req, res, next) => {
   const { post } = req.body;
   console.log(post);
-  const user = await User.findByPk(req.user.userId);
+  console.log(req.user.id);
+  const user = await User.findByPk(req.user.id);
   const createdPost = await user.createPost({ message: post });
   res.status(200).send(createdPost);
 });

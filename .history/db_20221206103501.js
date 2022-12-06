@@ -48,10 +48,10 @@ Post.belongsTo(User, { foreignKey: "userId" });
 
 async function main() {
   await sequelize.sync({ force: true });
-  // const users = await User.bulkCreate(userData);
-  // await Promise.all(messageDataFozzie.map((x) => users[0].createPost(x)));
-  // await Promise.all(messageDataSwedishChef.map((x) => users[1].createPost(x)));
-  // await Promise.all(messageDataAnimal.map((x) => users[2].createPost(x)));
+  const users = await User.bulkCreate(userData);
+  await Promise.all(messageDataFozzie.map((x) => users[0].createPost(x)));
+  await Promise.all(messageDataSwedishChef.map((x) => users[1].createPost(x)));
+  await Promise.all(messageDataAnimal.map((x) => users[2].createPost(x)));
 }
 main();
 
